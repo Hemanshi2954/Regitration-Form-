@@ -1,4 +1,5 @@
 Project Overview:
+
 This project implements a user registration system for the Bharat Intern website. Users can create accounts by providing their details
 through a registration form. The submitted data is validated on the client-side (JavaScript) and then securely sent to the server for 
 storage in a MongoDB database.
