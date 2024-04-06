@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/RegistrationForm')
+mongoose.connect('mongodb+srv://hemanshiprajapati811:30esT3wt0KHr0tnS@registration-form-task1.u7kgi02.mongodb.net/?retryWrites=true&w=majority&appName=Registration-form-task1')
   .then(() => console.log("Connected to Database"))
   .catch((error) => console.log("Error in Connecting to Database:", error));
 
@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/RegistrationForm')
 
 const User = mongoose.model('User', UserSchema);
 
-app.post("/success.html", async (req, res) => {
+app.post("/signup", async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
       return res.status(400).send("Account already exists");
@@ -31,7 +31,7 @@ app.post("/success.html", async (req, res) => {
     res.redirect('success.html');
 });
 
-app.post("/login_successfull.html", async (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email, password: password });
   if (!user) {
@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
   res.redirect('index.html');
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
