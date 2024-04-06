@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/RegistrationForm')
 
 const User = mongoose.model('User', UserSchema);
 
-app.post("/success", async (req, res) => {
+app.post("/success.html", async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
       return res.status(400).send("Account already exists");
@@ -31,7 +31,7 @@ app.post("/success", async (req, res) => {
     res.redirect('success.html');
 });
 
-app.post("/login_successfull", async (req, res) => {
+app.post("/login_successfull.html", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email, password: password });
   if (!user) {
